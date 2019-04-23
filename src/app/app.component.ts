@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ang-seven';
-  someData = '';
+  carFaxObjects = [];
+  mainHeading = "Main Heading";
   
   /*someData = [{
     title: 'First Car',
@@ -75,7 +76,11 @@ export class AppComponent {
 ngOnInit(){
     fetch('http://localhost:3005/')
     .then(res => res.json())
-    .then( data => this.someData = data)
+    .then( data => {
+      this.carFaxObjects = data
+      //console.log(`This is the Data : ${data[2]}`);
+      console.log(`THis is the carFax ${Object.keys(this.carFaxObjects)}`);
+    })
 
    //fetch('https://www.carfax.com/Used-Cars-in-New-York-NY_c8636')
     //.then(res => {
