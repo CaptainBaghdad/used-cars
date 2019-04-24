@@ -1,0 +1,13 @@
+<div id="reg-main-div">
+<div id="reg-form-div">
+<form [formGroup]="form" (ngSubmit)="handleSubmit(e)">
+  Name : <input type='text' id='name' name='name' formControlName="name"><br/>
+  Email: <input type='text' id='email' name='email' formControlName="email"><br/>
+  Password: <input type='text' id='password' name='password' formControlName="password"><br/>
+<br/>
+<input type="submit">
+
+</form>
+</div>
+</div>
+
