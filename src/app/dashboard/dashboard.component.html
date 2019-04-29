@@ -1,0 +1,22 @@
+<div id="dash-main-div">
+  <div id="dash-form-div">
+  <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+     Upload Pic: <input (change)="handleFile($event)" type='file' id='file' name='file' formControlName="file"><br/>
+    <!--Asking Price: <input type='text' id='price' name='price' formControlName="price"><br/>
+    Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>
+    Model of the Car: <input type='text' id='model' name='model' formControlName="model"><br/>
+    Milege on the Car: <input type='text' id='milege' name='mileage' formControlName="mileage"><br/>
+    Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>
+    <br/>-->
+
+  <input type="submit">
+  
+  </form>
+  </div>
+  </div>
+
+  <div id="img-holder" style="height:300px; width:300px;">
+
+
+  </div>
+  

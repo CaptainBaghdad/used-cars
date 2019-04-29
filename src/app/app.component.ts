@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'ang-seven';
-  carFaxObjects = [];
-  mainHeading = "Main Heading";
+  title: string = 'ang-seven';
+  carFaxObjects: Array<any> = [];
+  mainHeading: string = "Main Heading";
   
   /*someData = [{
     title: 'First Car',
@@ -73,7 +73,7 @@ export class AppComponent {
 
 ];*/
   
-ngOnInit(){
+/*ngOnInit(){
     fetch('http://localhost:3005/')
     .then(res => res.json())
     .then( data => {
@@ -93,5 +93,5 @@ ngOnInit(){
 
 
    
-  }
+  }*/
 }
