@@ -37,7 +37,11 @@ export class LoginComponent implements OnInit {
       password: val.password
      })
      .subscribe(data => {
-       console.log(`We have success ${data['token']}`)
+       this.loggedin = true;
+       let token: string = data['token'];
+       localStorage.setItem('token', token);
+       this.router.navigate(['dashboard'])
+       //console.log(`We have success ${data['token']}`)
         
      })
 
