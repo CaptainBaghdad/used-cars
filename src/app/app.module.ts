@@ -7,13 +7,18 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LandingService } from './landing.service';
+import { LoadingComponent } from './loading/loading.component';
+import { CarsComponent } from './cars/cars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoadingComponent,
+    CarsComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule
   
   ],
-  providers: [],
+  providers: [LandingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
