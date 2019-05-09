@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
        this.loggedin = true;
        let token: string = data['token'];
        localStorage.setItem('token', token);
+       localStorage.setItem('name', data['data']['name'])
+       console.log(`This is the localStorage Name : ${localStorage.getItem('name')}`)
        this.router.navigate(['dashboard'])
        //console.log(`We have success ${data['token']}`)
         
