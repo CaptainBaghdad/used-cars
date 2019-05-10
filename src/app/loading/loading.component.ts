@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from  '@angular/common/http';
+import {FilterComponent} from '../filter/filter.component';
+import {TransferServiceService} from '../transfer-service.service';
 
 @Component({
   selector: 'app-loading',
   template:  `
+  <app-filter></app-filter>
   <div *ngIf="show; else showData">
 <h3>Loading ....</h3>
 
@@ -50,12 +53,26 @@ style="float:right; height: 800px; width:300px"
 
 export class LoadingComponent implements OnInit {
   words: String = "Loading...."
-  carFaxObjects: Array<any>;
-  show: Boolean = true
+  carFaxObjects;
+  show: Boolean = true;
+  data = this.choice.getData();
+  
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private choice: TransferServiceService) { 
+    /*if(this.data){
+      console.log(`This is from the filter Service ${this.data}`)
+    }
 
+    else{
+      console.log(`No sir`);
+    }*/
+
+
+  }
+  testFunc = () =>{
+    
+  }
   addCar = (event,obj) =>{
     let userName = localStorage.getItem('name');
     let sendData = {};
@@ -75,6 +92,20 @@ export class LoadingComponent implements OnInit {
 
   }
 
+
+  lowestPrice = () =>{
+    let val  = this.choice.getData();
+    console.log(`BIG VAL ${val}`)
+    if(val !== ""){
+       
+      //this.carFaxObjects =  this.choice.getFilteredPrices();
+    }
+    else{
+      return 'NOOOOOOOOO'
+    }
+      
+  }
+
   ngOnInit() {
     
     fetch('http://localhost:3005/')
@@ -82,7 +113,7 @@ export class LoadingComponent implements OnInit {
     .then( data => {
       this.carFaxObjects = data 
       this.show = false;
-
+      
       
       console.log(`THis is the carFax ${Object.keys(this.carFaxObjects)}`);
     })
