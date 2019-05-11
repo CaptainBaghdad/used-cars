@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingService } from './landing.service';
 import { LoadingComponent } from './loading/loading.component';
 import { CarsComponent } from './cars/cars.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CarsComponent } from './cars/cars.component';
     LoginComponent,
     DashboardComponent,
     LoadingComponent,
-    CarsComponent
+    CarsComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

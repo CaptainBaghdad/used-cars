@@ -8,6 +8,7 @@ import { Promise } from 'q';
 export class LandingService {
   carFaxObjects;
   url = 'http://localhost:3005/';
+ 
 
 
   constructor(private http: HttpClient) { }
@@ -16,9 +17,14 @@ export class LandingService {
     return this.http.get(`${this.url}`)
     .subscribe(res => {
 
+
       this.carFaxObjects = res
     })
     
 
   }
+
+  
+
+
 }
