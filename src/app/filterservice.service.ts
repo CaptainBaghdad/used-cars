@@ -9,6 +9,8 @@ export class FilterserviceService {
   constructor(private http: HttpClient) { }
 
   private data;
+  private carFaxObjects
+  private url
 
   setData = (data) =>{
     this.data = data
@@ -24,12 +26,19 @@ export class FilterserviceService {
     this.data = undefined;
   }
 
-  getFilteredPrice = (obj) =>{
-   
-    return this.http.post('http://localhost:3005/price',obj)
-    .subscribe(data =>{
-      console.log(`THis is the obj ${obj.ans}`)
+  getFilteredPrice = (objs) =>{
+
+    return objs.sort((a,b) => {
+      return a.price.replace(/\D/g, '')  - b.price.replace(/\D/g,"") 
     })
+   
+    /*return this.http.post('http://localhost:3005/price',objs)
+    .subscribe(data =>{
+      this.carFaxObjects = data
+      console.log(`THis is the obj ${this.carFaxObjects}`)
+    })*/
 
   }
+
+  
 }

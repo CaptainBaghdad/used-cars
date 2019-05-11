@@ -12,11 +12,22 @@ export class TransferServiceService {
   private carFaxObjects;
   
   setCarFax = () =>{
-   return this.http.get('http://localhost:3005/')
-   .subscribe(res => {
-    this.carFaxObjects = res
+    let ans;
+    console.log(`SETCARFAX ran`)
+   fetch('http://localhost:3005/')
+   .then(res => res.json())
+   .then(d => {
+    console.log(`GEEEEZ ${d}`)
+    ans = d
+    return ans
+     
    })
+   
+     //let val  = JSON.stringify(res)
+    //this.carFaxObjects = val 
+    //return this.carFaxObjects
   
+  //return this.carFaxObjects
   }
 
   setData = (data) => {
@@ -32,20 +43,66 @@ export class TransferServiceService {
     this.data = undefined;
   }
 
-  getFilteredPrices = () =>{
-    let ans = this.getData();
-    return this.http.post('http://localhost:3005/price',{ans: ans})
-    .subscribe(data =>{
-      console.log(`this is the DATA ${Object.values(data['ans'])}`)
+ getExp = (objs) =>{
+  return objs.sort((a,b) => {
+    return b.price.replace(/\D/g, '')  - a.price.replace(/\D/g,"") 
+  })
+ }
+
+  getFilteredPrice = (objs) =>{
+
+    return objs.sort((a,b) => {
+      return a.price.replace(/\D/g, '')  - b.price.replace(/\D/g,"") 
+    })
+   }
+
+   getBetweenTen = (objs) =>{
+    return objs.filter((obj) => {
+     return  obj.price.replace(/\D/g, '') > 10000 && obj.price.replace(/\D/g, '') < 20000 
     })
 
-  }
+   }
+
+   getBetweenTwenty = (objs) =>{
+    return objs.filter((obj) => {
+     return  obj.price.replace(/\D/g, '') > 20000 && obj.price.replace(/\D/g, '') < 30000 
+    })
+
+   }
+
+   getBetweenThirty = (objs) =>{
+    return objs.filter((obj) => {
+     return  obj.price.replace(/\D/g, '') > 30000 && obj.price.replace(/\D/g, '') < 40000 
+    })
+
+   }
+
+   getBetweenFourty = (objs) =>{
+    return objs.filter((obj) => {
+     return  obj.price.replace(/\D/g, '') > 40000 && obj.price.replace(/\D/g, '') < 50000 
+    })
+
+   } 
+
+   getBetweenFifty = (objs) =>{
+    return objs.filter((obj) => {
+     return  obj.price.replace(/\D/g, '') > 50000 && obj.price.replace(/\D/g, '') < 60000 
+    })
+
+   }
+
+   getBetweenSixty = (objs) =>{
+    return objs.filter((obj) => {
+     return  obj.price.replace(/\D/g, '') > 60000 && obj.price.replace(/\D/g, '') < 70000 
+    })
+
+   }
+
+
+
+
+
 
 
 }
-
-
-
-
-
 

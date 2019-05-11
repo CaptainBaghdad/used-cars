@@ -11,6 +11,7 @@ export class FilterComponent implements OnInit {
  
  
   colorArray: Array<any> = [];
+  carFaxObjects;
   
 
   constructor(private http: HttpClient, private transfer: TransferServiceService) { }
@@ -31,6 +32,7 @@ export class FilterComponent implements OnInit {
 
 
   ngOnInit() {
+   //this.carFaxObjects = this.transfer.setCarFax()
   }
 
   ngOnChanges = (changes: SimpleChanges) =>{
