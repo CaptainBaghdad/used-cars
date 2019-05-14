@@ -1,10 +1,11 @@
 <div id="dash-main-div">
   <div id="dash-form-div">
   <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <input type="hidden" name="hval"  id="hval" formControlName="hval">
      Upload Pic: <input (change)="handleFile($event)" type='file' id='file' name='file' formControlName="file"><br/>
      Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>
      Asking Price: <input type='text' id='price' name='price' formControlName="price"><br/>
-     Milege on the Car: <input type='text' id='milege' name='mileage' formControlName="mileage"><br/>
+     Milege on the Car: <input type='text' id='mileage' name='mileage' formControlName="mileage"><br/>
      Body Type of the Car: <input type='text' id='bodytype' name='bodytype' formControlName="bodytype"><br/>
      Color of the Car: <input type='text' id='color' name='color' formControlName="color"><br/>
      Engine on the Car: <input type='text' id='engine' name='engine' formControlName="engine"><br/>
@@ -25,7 +26,34 @@
   </div>
 
   <div id="img-holder" style="height:300px; width:300px;">
-
+      
 
   </div>
+
+  <div id="carEdit" style="height: 300px; width:300px;">
+      <button (click)="handleEdit()" id="edit-btn">Edit</button> 
+      
+  
+  </div>
+
+  <mat-card>
+    Card  works!
+  </mat-card>
+
+  <!--<div id="fe">
+      <form [formGroup]="form" (ngSubmit)="editSubmit()">
+          Asking Price: <input type='text' id='edit-price' name='edit-price' formControlName="edit-price"><br/>
+          Milege on the Car: <input type='text' id='edit-milege' name='edit-mileage' formControlName="edit-mileage"><br/>
+          Description: <input type='text' id='edit-description' name='edit-description' formControlName="edit-description"><br/>
+        <br />
+        <input type="submit" value="Submit" />
+        
+        </form>
+  
+
+  </div>-->
+
+  
+
+  
   

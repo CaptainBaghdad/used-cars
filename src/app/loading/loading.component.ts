@@ -10,8 +10,8 @@ import {TransferServiceService} from '../transfer-service.service';
   <div>
 <select id="car-filter" (change)= "handleChange($event)">
   <option value="" selected>Please choose a filter</option>
-  <optgroup label="filter-prices">
-    <option value="cheap" (click)="lowestPrice(carFaxObjects)">Cheapest</option>
+  <optgroup label="Price">
+    <option value="cheap" >Cheapest</option>
     <option value="exspensive">Exspensive</option>
     <option value="between-10-and-20">Between 10,000 and 20,000</option>
     <option value="between-20-and-30">Between 20,000 and 30,000</option>
@@ -22,9 +22,22 @@ import {TransferServiceService} from '../transfer-service.service';
 </optgroup>
 
 
-<option value="price">Price</option>
-<option value="color">Color</option>
-<option value="mileage">Mileage</option>
+<optgroup label="Color">
+  <option value="black">Black</option>
+  <option value="white">White</option>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+  <option value="gray">Gray</option>
+  <option value="other">Other</option>
+</optgroup>
+<optgroup label="Mileage">
+<option value="lowest">Lowest</option>
+<option value="less-than-20">Less than 20,000</option>
+<option value="less-than-40">Less than 40000</option>
+
+</optgroup>
+
+
 
 </select>
 
@@ -81,6 +94,7 @@ style="float:left; height: 800px; width:300px"
 export class LoadingComponent implements OnInit {
   words: String = "Loading...."
   carFaxObjects;
+  defaultCars;
   show: Boolean = true;
   data = this.choice.getData();
   
@@ -106,54 +120,88 @@ export class LoadingComponent implements OnInit {
 
     switch (ans) {
       case 'cheap':
-       this.carFaxObjects = this.choice.getFilteredPrice(this.carFaxObjects)
+       this.carFaxObjects = this.choice.getFilteredPrice(this.defaultCars)
     
         break;
 
         case 'exspensive':
-       this.carFaxObjects = this.choice.getExp(this.carFaxObjects)
+       this.carFaxObjects = this.choice.getExp(this.defaultCars)
     
         break;
 
         case 'between-10-and-20':
-        this.carFaxObjects = this.choice.getBetweenTen(this.carFaxObjects)
+        this.carFaxObjects = this.choice.getBetweenTen(this.defaultCars)
         break;
 
         case 'between-20-and-30':
-        this.carFaxObjects = this.choice.getBetweenTwenty(this.carFaxObjects)
+        this.carFaxObjects = this.choice.getBetweenTwenty(this.defaultCars)
         break;
 
         case 'between-30-and-40':
-        this.carFaxObjects = this.choice.getBetweenThirty(this.carFaxObjects)
+        this.carFaxObjects = this.choice.getBetweenThirty(this.defaultCars)
         break;
 
         case 'between-40-and-50':
-        let len = this.choice.getBetweenFourty(this.carFaxObjects).length
+        let len = this.choice.getBetweenFourty(this.defaultCars).length
         if(len >= 1){
-          this.carFaxObjects = this.choice.getBetweenFourty(this.carFaxObjects)
+          this.carFaxObjects = this.choice.getBetweenFourty(this.defaultCars)
         }
-        //return this.carFaxObjects
+        this.carFaxObjects =  this.defaultCars
         break;
 
         case 'between-50-and-60':
-        let l = this.choice.getBetweenFifty(this.carFaxObjects).length
+        let l = this.choice.getBetweenFifty(this.defaultCars).length
         if(l >= 1){
-        this.carFaxObjects = this.choice.getBetweenFifty(this.carFaxObjects)
+        this.carFaxObjects = this.choice.getBetweenFifty(this.defaultCars)
         }
-        //return this.carFaxObjects
+        this.carFaxObjects =  this.defaultCars
         break;
 
         case 'between-60-and-70':
-        let sixlen = this.choice.getBetweenSixty(this.carFaxObjects).length
+        let sixlen = this.choice.getBetweenSixty(this.defaultCars).length
         console.log(`606060606 ${sixlen}`)
         if(sixlen >= 1){
-          this.carFaxObjects = this.choice.getBetweenSixty(this.carFaxObjects)
+          this.carFaxObjects = this.choice.getBetweenSixty(this.defaultCars)
         }
-       // return this.carFaxObjects
+        this.carFaxObjects =  this.defaultCars
         break;
-     
+
+        case 'black':
+        this.carFaxObjects = this.choice.getBlackCars(this.defaultCars)
+        break;
+
+        case 'white':
+        this.carFaxObjects = this.choice.getWhiteCars(this.defaultCars)
+        break;
+
+        case 'red':
+        this.carFaxObjects = this.choice.getRedCars(this.defaultCars)
+        break;
+
+        case 'blue':
+        this.carFaxObjects = this.choice.getBlueCars(this.defaultCars)
+        break;
+
+        case 'gray':
+        this.carFaxObjects = this.choice.getGrayCars(this.defaultCars)
+        break;
+
+        case 'other':
+        this.carFaxObjects = this.choice.getOtherCars(this.defaultCars)
+        break;
+
+        case 'lowest':
+        this.carFaxObjects = this.choice.getLowestMileage(this.defaultCars);
+        break;
+        case 'less-than-20':
+        this.carFaxObjects = this.choice.getLessThanTwenty(this.defaultCars)
+        break;
+
+        case 'less-than-40':
+        this.carFaxObjects = this.choice.getLessThanFourty(this.defaultCars)
+        break;
       default:
-        return this.carFaxObjects;
+      this.carFaxObjects =  this.defaultCars ;
     }
     
    
@@ -178,19 +226,7 @@ export class LoadingComponent implements OnInit {
   }
 
 
-  lowestPrice = () =>{
-    let val  = this.choice.getData();
-    console.log(`BIG VAL ${val}`)
-    if(val !== ""){
-       
-      return   this.choice.getFilteredPrice(this.carFaxObjects);
-    }
-    else{
-      return 'NOOOOOOOOO'
-    }
-      
-  }
-
+  
   ngOnInit() {
     //let val = JSON.stringify(this.choice.setCarFax());
     
@@ -208,6 +244,7 @@ export class LoadingComponent implements OnInit {
     .then( data => {
       this.carFaxObjects = data 
       this.show = false;
+      this.defaultCars = data
       
       
       console.log(`THis is the carFax ${Object.keys(this.carFaxObjects)}`);
