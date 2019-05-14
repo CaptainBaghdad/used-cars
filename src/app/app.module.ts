@@ -1,4 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material';
+
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule}   from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -11,6 +14,7 @@ import { LandingService } from './landing.service';
 import { LoadingComponent } from './loading/loading.component';
 import { CarsComponent } from './cars/cars.component';
 import { FilterComponent } from './filter/filter.component';
+import { UserCarsComponent } from './user-cars/user-cars.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +24,17 @@ import { FilterComponent } from './filter/filter.component';
     DashboardComponent,
     LoadingComponent,
     CarsComponent,
-    FilterComponent
+    FilterComponent,
+    UserCarsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCardModule
   
   ],
   providers: [LandingService],

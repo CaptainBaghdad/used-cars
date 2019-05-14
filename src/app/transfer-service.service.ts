@@ -98,8 +98,75 @@ export class TransferServiceService {
 
    }
 
+   getBlackCars = (objs) =>{
+     return objs.filter((obj) =>{
+       console.log(obj.multi);
+       return obj.multi[2].replace(/(Color:)/g,"").trim() == 'Black' 
+     })
+
+   }
+
+   getWhiteCars = (objs) =>{
+    return objs.filter((obj) =>{
+      console.log(obj.multi);
+      return obj.multi[2].replace(/(Color:)/g,"").trim() == 'White' ||   obj.multi[2].replace(/(Color:)/g,"").trim() == 'white'
+    })
+
+  }
+
+  getRedCars = (objs) =>{
+    return objs.filter((obj) =>{
+      console.log(obj.multi);
+      return obj.multi[2].replace(/(Color:)/g,"").trim() == 'Red' ||   obj.multi[2].replace(/(Color:)/g,"").trim() == 'red'
+    })
+
+  }
+
+  getBlueCars = (objs) =>{
+    return objs.filter((obj) =>{
+      console.log(obj.multi);
+      return obj.multi[2].replace(/(Color:)/g,"").trim() == 'Blue' ||   obj.multi[2].replace(/(Color:)/g,"").trim() == 'blue'
+    })
+
+  }
+
+  getGrayCars = (objs) =>{
+    return objs.filter((obj) =>{
+      console.log(obj.multi);
+      return obj.multi[2].replace(/(Color:)/g,"").trim() == 'Gray' ||   obj.multi[2].replace(/(Color:)/g,"").trim() == 'gray'
+    })
+
+  }
+
+  getOtherCars = (objs) =>{
+     //let arr = ['Black', 'White', 'Red', 'Blue', 'Gray'];
+     return objs.filter((obj) =>{
+      console.log(obj.multi);
+      return obj.multi[2].replace(/(Color:)/g,"").trim() != 'Gray' &&   obj.multi[2].replace(/(Color:)/g,"").trim() != 'White' &&  obj.multi[2].replace(/(Color:)/g,"").trim() != 'Red' && obj.multi[2].replace(/(Color:)/g,"").trim() != 'Black' && obj.multi[2].replace(/(Color:)/g,"").trim() !== 'Blue'
+    })
 
 
+  }
+
+
+  getLowestMileage = (objs) =>{
+    return objs.sort((a,b) =>{
+      return a.multi[0].replace(/\D/g, "") - b.multi[0].replace(/\D/g, "")
+    })
+  }
+
+  getLessThanTwenty = (objs) =>{
+    return objs.filter((obj) =>{
+      return obj.multi[0].replace(/\D/g,"") <= 20000
+    })
+  }
+
+
+  getLessThanFourty = (objs) =>{
+    return objs.filter((obj) =>{
+      return obj.multi[0].replace(/\D/g,"") <= 40000
+    })
+  }
 
 
 

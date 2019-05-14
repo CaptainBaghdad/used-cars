@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import {DashBoardServiceService} from '../dash-board-service.service';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +15,14 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class DashboardComponent implements OnInit {
   form:FormGroup
   show: Boolean = true
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder) { 
+  editHolder
+  fezzy;
+  name: String;
+  userName;
+  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder,
+  dashboard: DashBoardServiceService ) { 
     this.form = this.fb.group({
+      hval:'',
       file: [],
       price: 0,
       make: '',
@@ -27,21 +35,52 @@ export class DashboardComponent implements OnInit {
 
   }
    selectedFile;
+   
+   
+
+   establishUser = (user) =>{
+
+   }
+
+   handleEdit = () =>{
+     this.fezzy.style.display = 'block'
+
+
+   }
+
+   editSubmit = () =>{
+
+   }
 
   ngOnInit() {
     this.show = false
+    this.userName = localStorage.getItem('name')
+    console.log(`This is the init value of the ng Inti ${this.userName}`)
+    //this.editHolder = document.getElementById('carEdit')
+    //this.editHolder.style.display = 'none';
+
+    //this.fezzy = document.getElementById('fe')
+    //this.fezzy.style.display = 'none'
   }
 
   handleFile = (event) =>{
+    console.log(`This is the handle being fired `)
     if (event.target.files.length > 0) {
+      const hval = this.userName;
+      console.log(`HANDLE FILE This is the hval ${hval}`)
       const file = event.target.files[0];
-      let price = event.target.price.value
+      console.log(`HANDLE FILE This is the file ${file}`)
+      let price = event.target.price.value;
+      //console.log(`This is the price ${price}`)
       let make = event.target.make.value;
+      console.log(`HANDLE FILE This is the make of the car ${make}`)
       let bodytype = event.target.bodytype.value;
       let color = event.target.color.value;
       let engine = event.target.engine.value;
       let mileage = event.target.mileage.value;
       let description = event.target.description.value
+      this.form.get('hval').setValue(hval);
+      console.log(`SET VALUE ${this.form.get('hval')}`)
       this.form.get('file').setValue(file);
       this.form.get('price').setValue(price);
       this.form.get('make').setValue(make);
@@ -56,12 +95,15 @@ export class DashboardComponent implements OnInit {
   }
 
   handleSubmit = () => {
-
+    console.log(`Submit has fired...`)
+    const url = 'http://localhost:3005/newcar';
     const formData = new FormData();
+    let tf = document.getElementById('hval');
+    formData.append('hval', this.userName)
     formData.append('file', this.form.get('file').value);
    
     formData.append('price', this.form.get('price').value)
-    //console.log(`FormData Price: ${this.form.get('price').value}`);
+   
     formData.append('make', this.form.get('make').value)
     formData.append('bodytype', this.form.get('bodytype').value)
     formData.append('mileage', this.form.get('mileage').value)
@@ -69,20 +111,23 @@ export class DashboardComponent implements OnInit {
     formData.append('engine', this.form.get('engine').value)
     formData.append('description', this.form.get('description').value)
 
-    let formHolder = document.getElementById('dash-main-div');
+  
+    console.log(`THE FUCK!!! ${formData}`)
 
-    return this.http.post('http://localhost:3005/newcar',  formData)
+    return this.http.post(`${url}`,  formData) 
+    
     .subscribe(data => {
-      formHolder.style.display = 'none'
-      console.log(`THis is the response from the server ${Object.keys(data)}`)
+     // formHolder.style.display = 'none'
+      console.log(`THis is the response from the server ${data}`)
       this.selectedFile = data['pic']//['originalname']
       let imagePath = `http://localhost:3005/uploads/`
       let createdImg = `<h3>File Upload</h3><br/> 
-                          <img src=${this.selectedFile} >`
+                          <img src=${this.selectedFile} style="height: 100px; width:150px;">`
 
-      let holder = document.getElementById('img-holder')
-      holder.innerHTML = createdImg
-     
+      //let holder = document.getElementById('img-holder')
+      //holder.innerHTML = createdImg
+     // this.editHolder.style.display = 'block'
+      
 
       
       
