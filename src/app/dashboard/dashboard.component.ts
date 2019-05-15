@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import {DashBoardServiceService} from '../dash-board-service.service';
 import {MatCardModule} from '@angular/material/card';
+import {CarsComponent} from '../cars/cars.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -56,11 +57,11 @@ export class DashboardComponent implements OnInit {
     this.show = false
     this.userName = localStorage.getItem('name')
     console.log(`This is the init value of the ng Inti ${this.userName}`)
-    //this.editHolder = document.getElementById('carEdit')
-    //this.editHolder.style.display = 'none';
+    this.editHolder = document.getElementById('carEdit')
+    this.editHolder.style.display = 'none';
 
-    //this.fezzy = document.getElementById('fe')
-    //this.fezzy.style.display = 'none'
+    this.fezzy = document.getElementById('fe')
+    this.fezzy.style.display = 'none'
   }
 
   handleFile = (event) =>{
@@ -98,7 +99,7 @@ export class DashboardComponent implements OnInit {
     console.log(`Submit has fired...`)
     const url = 'http://localhost:3005/newcar';
     const formData = new FormData();
-    let tf = document.getElementById('hval');
+    let fh = document.getElementById('dash-main-div');
     formData.append('hval', this.userName)
     formData.append('file', this.form.get('file').value);
    
@@ -117,16 +118,19 @@ export class DashboardComponent implements OnInit {
     return this.http.post(`${url}`,  formData) 
     
     .subscribe(data => {
-     // formHolder.style.display = 'none'
+      fh.style.display = 'none'
       console.log(`THis is the response from the server ${data}`)
       this.selectedFile = data['pic']//['originalname']
       let imagePath = `http://localhost:3005/uploads/`
       let createdImg = `<h3>File Upload</h3><br/> 
-                          <img src=${this.selectedFile} style="height: 100px; width:150px;">`
+                          <img src=${this.selectedFile} style="height: 100px; width:150px;">
+                          <br/>
+                          
+                          `
 
-      //let holder = document.getElementById('img-holder')
-      //holder.innerHTML = createdImg
-     // this.editHolder.style.display = 'block'
+      let holder = document.getElementById('img-holder')
+      holder.innerHTML = createdImg
+      this.editHolder.style.display = 'block'
       
 
       
