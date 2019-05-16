@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cars',
@@ -8,7 +9,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 })
 export class CarsComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
  allUsers;
  carObjectId;
  editId;
@@ -43,20 +44,26 @@ handleDelete = (event) =>{
 }
 
 handleEdit = (event) =>{
-  console.log(event.target.id)
-  let ed = event.target.id;
+
+  /*console.log(event.target.id)
+  
   if(ed !== ""){
     this.editId = ed;
     //let del = new HttpParams().set('del', collectionToDelete);
   //console.log(del)
   
-  return this.http.delete(`http://localhost:3005/edit/${ed}`)
+  return this.http.put(`http://localhost:3005/edit/${ed}`,{})
   .subscribe(data =>{
+    this.router
     console.log(Object.keys(data))
   })
 
-  }
-  console.log(`WHAT DEM DUE ${ed}`)
+  }*/
+  console.log(`HANDLE EDIT FIRED`)
+  let ed = event.target.id;
+
+    this.router.navigate([`edit/${ed}`])
+  
 
 }
 

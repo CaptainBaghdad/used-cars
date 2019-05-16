@@ -18,6 +18,7 @@ import { FilterComponent } from './filter/filter.component';
 import { UserCarsComponent } from './user-cars/user-cars.component';
 import { Error500Component } from './error500/error500.component';
 import { Error400Component } from './error400/error400.component';
+import { CarEditComponent } from './car-edit/car-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { Error400Component } from './error400/error400.component';
     FilterComponent,
     UserCarsComponent,
     Error500Component,
-    Error400Component
+    Error400Component,
+    CarEditComponent
   ],
   imports: [
     BrowserModule,
