@@ -4,11 +4,17 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent} from './dashboard/dashboard.component';
 import {LoadingComponent} from './loading/loading.component';
-
+import {CarEditComponent} from './car-edit/car-edit.component';
 const routes: Routes = [
   {
     path: '',
     component: LoadingComponent,
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'edit/:ed',
+    component: CarEditComponent,
     pathMatch: 'full'
   },
   {
