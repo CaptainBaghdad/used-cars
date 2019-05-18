@@ -47,44 +47,90 @@ import {TransferServiceService} from '../transfer-service.service';
   
   
   </div>
+
+
   <div *ngIf="show; else showData">
 <h3>Loading ....</h3>
 
 </div>
+<div class="row" id="show-car-item"  style="background: gray;">
+<div class="col-md-8" style="background: white; margin: 10px;">
 <ng-template #showData>
-<div *ngFor="let obj of carFaxObjects" 
-class="img-holder" 
-style="float:left; height: 800px; width:300px"
- > 
-  <img 
-  className="img-display" 
-  style="border:3px solid black; width:275px; margin-top:35px; height:300px;" 
+
+
+
+<div *ngFor="let obj of carFaxObjects"><!-- --> 
+<mat-card >
+
+<div id="card-img-holder" style="width:">
+<img mat-card-lg-image
+   
   src="{{obj.pic}}" 
-  alt="no data" />
-  <br/>
-  <p>
-    <span>{{obj.name}}</span>
-  </p>
-  <br/>
-  <p> <span>{{obj.price}}</span></p>
-  <br />
-<p> <span> m1{{obj.multi[0]}}</span></p>
-<br />
-<p> <span>m2 {{obj.multi[1]}}</span></p>
-<br />
-<p> <span>m3 {{obj.multi[2]}}</span></p>
-<br />
-<p> <span>m4 {{obj.multi[3]}}</span></p>
-<br />
-<button (click)="addCar($event, obj)" id={{obj.name}}>Select</button>
+  alt="no data" 
+  style="height:344px; width:258px;"
+  />
+
+  <li  style="display: inline-box;list-style:none;">
+  <mat-card-title><span>{{obj.name}}</span></mat-card-title>
+  </li>
+ 
+  <li  style="display: inline-box;list-style:none;"> 
+  <mat-card-subtitle>
+  <span style="display: inline-block; list-style:none;">
+  {{obj.price}}
+  </span>
+  </mat-card-subtitle>
+  </li>
+
+</div><!--end of card-img-holer-->
   
+  
+  
+
+<li  style="display: inline-block;list-style:none;"> 
+<mat-card-subtitle>
+<span style="display: inline-block;list-style:none;">
+ m1{{obj.multi[0]}}
+ </span>
+ </mat-card-subtitle>
+ </li>
+
+<li  style="display: inline-block;list-style:none;">
+<mat-card-subtitle>
+ <span style="display: inline-block; list-style:none;">
+ m2 {{obj.multi[1]}}
+ </span>
+ </mat-card-subtitle>
+ </li>
+
+<li  style="display: inline-block;list-style:none;">
+<mat-card-subtitle>
+ <span style="display:inline-block; list-style:none;">
+ m3 {{obj.multi[2]}}
+ </span>
+ </mat-card-subtitle>
+ </li>
+
+<li  style="display: inline-block;list-style:none;">
+<mat-card-subtitle>
+ <span style="display: inline-block list-style:none;;">
+ m4 {{obj.multi[3]}}
+ </span>
+ </mat-card-subtitle>
+ </li>
+
+<button (click)="addCar($event, obj)" id={{obj.name}} class="btn btn-danger">Select</button>
+</mat-card> 
 </div>
+ 
+
 
 
 
 
 </ng-template>
-  
+</div>
+</div>
   
   `,
   styleUrls: ['./loading.component.sass']
