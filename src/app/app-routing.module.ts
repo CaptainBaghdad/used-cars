@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent} from './dashboard/dashboard.component';
 import {LoadingComponent} from './loading/loading.component';
 import {CarEditComponent} from './car-edit/car-edit.component';
+import {ShowCarComponent} from './show-car/show-car.component';
 const routes: Routes = [
   {
     path: '',
@@ -15,6 +16,12 @@ const routes: Routes = [
   {
     path: 'edit/:ed',
     component: CarEditComponent,
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'car/:id',
+    component: ShowCarComponent,
     pathMatch: 'full'
   },
   {

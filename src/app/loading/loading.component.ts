@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import {HttpClient} from  '@angular/common/http';
 import {FilterComponent} from '../filter/filter.component';
 import {TransferServiceService} from '../transfer-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-loading',
@@ -47,44 +48,76 @@ import {TransferServiceService} from '../transfer-service.service';
   
   
   </div>
+
+
   <div *ngIf="show; else showData">
 <h3>Loading ....</h3>
 
 </div>
+
 <ng-template #showData>
-<div *ngFor="let obj of carFaxObjects" 
-class="img-holder" 
-style="float:left; height: 800px; width:300px"
- > 
-  <img 
-  className="img-display" 
-  style="border:3px solid black; width:275px; margin-top:35px; height:300px;" 
+
+
+
+
+<div *ngFor="let obj of carFaxObjects">
+<mat-card>
+
+
+
+
+
+
+<img mat-card-lg-image
+   
   src="{{obj.pic}}" 
-  alt="no data" />
-  <br/>
-  <p>
-    <span>{{obj.name}}</span>
-  </p>
-  <br/>
-  <p> <span>{{obj.price}}</span></p>
-  <br />
-<p> <span> m1{{obj.multi[0]}}</span></p>
-<br />
-<p> <span>m2 {{obj.multi[1]}}</span></p>
-<br />
-<p> <span>m3 {{obj.multi[2]}}</span></p>
-<br />
-<p> <span>m4 {{obj.multi[3]}}</span></p>
-<br />
-<button (click)="addCar($event, obj)" id={{obj.name}}>Select</button>
+  alt="no data" 
+ 
+  >
+
+  <li style="list-style: none; display: ;" >
+  <mat-card-title style="margin-left: 20px;"><span>{{obj.name}}</span></mat-card-title>
+  </li>
+ 
+ 
   
+  
+  
+ 
+  
+  <li style="list-style: none; display:;" > 
+  <mat-card-subtitle>
+  <span >
+  {{obj.price}}
+  </span>
+  </mat-card-subtitle>
+  </li>
+
+
+
+  
+  
+  
+
+
+ 
+ <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-danger">Show Details</button>
+
+ 
+
+
+
+
+
+</mat-card>
+
 </div>
 
 
 
 
 </ng-template>
-  
+
   
   `,
   styleUrls: ['./loading.component.sass']
@@ -100,14 +133,8 @@ export class LoadingComponent implements OnInit {
   
 
 
-  constructor(private http: HttpClient, private choice: TransferServiceService) { 
-    /*if(this.data){
-      console.log(`This is from the filter Service ${this.data}`)
-    }
-
-    else{
-      console.log(`No sir`);
-    }*/
+  constructor(private http: HttpClient, private choice: TransferServiceService, private router: Router) { 
+   
 
 
   }
@@ -206,20 +233,24 @@ export class LoadingComponent implements OnInit {
     
    
   }
-  addCar = (event,obj) =>{
-    let userName = localStorage.getItem('name');
-    let sendData = {};
-    if (userName !== ''){
-      sendData['name'] = userName;
-      sendData['selectedCar'] = obj
-      return this.http.post(`http://localhost:3005/usercars`, sendData)
+
+
+  showCar = (event,obj) =>{
+    console.log(`SHOW CAR FIRED`)
+    let carId = event.target.id
+    
+    
+     
+      return this.http.get(`http://localhost:3005/car/${carId}`)
     .subscribe((obj) =>{
       //console.log(obj)
+      console.log(obj)
+      this.router.navigate([`car/${carId}`])
 
     })
 
 
-    }
+    
     
     
 
@@ -228,16 +259,6 @@ export class LoadingComponent implements OnInit {
 
   
   ngOnInit() {
-    //let val = JSON.stringify(this.choice.setCarFax());
-    
-    
-  // console.log(`NG INIT ${ this.choice.setCarFax()}`)
-   //this.show = false
-    
-    //console.log(`THIS IS THE INIT ${Object.keys(this.carFaxObjects)}`)
-    //this.choice.getFilteredPrices()
-
-
     
     fetch('http://localhost:3005/')
     .then(res => res.json())
