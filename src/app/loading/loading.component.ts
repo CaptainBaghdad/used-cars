@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import {HttpClient} from  '@angular/common/http';
 import {FilterComponent} from '../filter/filter.component';
 import {TransferServiceService} from '../transfer-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-loading',
@@ -53,84 +54,70 @@ import {TransferServiceService} from '../transfer-service.service';
 <h3>Loading ....</h3>
 
 </div>
-<div class="row" id="show-car-item"  style="background: gray;">
-<div class="col-md-8" style="background: white; margin: 10px;">
+
 <ng-template #showData>
 
 
 
-<div *ngFor="let obj of carFaxObjects"><!-- --> 
-<mat-card >
 
-<div id="card-img-holder" style="width:">
+<div *ngFor="let obj of carFaxObjects">
+<mat-card>
+
+
+
+
+
+
 <img mat-card-lg-image
    
   src="{{obj.pic}}" 
   alt="no data" 
-  style="height:344px; width:258px;"
-  />
+ 
+  >
 
-  <li  style="display: inline-box;list-style:none;">
-  <mat-card-title><span>{{obj.name}}</span></mat-card-title>
+  <li style="list-style: none; display: ;" >
+  <mat-card-title style="margin-left: 20px;"><span>{{obj.name}}</span></mat-card-title>
   </li>
  
-  <li  style="display: inline-box;list-style:none;"> 
+ 
+  
+  
+  
+ 
+  
+  <li style="list-style: none; display:;" > 
   <mat-card-subtitle>
-  <span style="display: inline-block; list-style:none;">
+  <span >
   {{obj.price}}
   </span>
   </mat-card-subtitle>
   </li>
 
-</div><!--end of card-img-holer-->
+
+
   
   
   
 
-<li  style="display: inline-block;list-style:none;"> 
-<mat-card-subtitle>
-<span style="display: inline-block;list-style:none;">
- m1{{obj.multi[0]}}
- </span>
- </mat-card-subtitle>
- </li>
 
-<li  style="display: inline-block;list-style:none;">
-<mat-card-subtitle>
- <span style="display: inline-block; list-style:none;">
- m2 {{obj.multi[1]}}
- </span>
- </mat-card-subtitle>
- </li>
+ 
+ <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-danger">Show Details</button>
 
-<li  style="display: inline-block;list-style:none;">
-<mat-card-subtitle>
- <span style="display:inline-block; list-style:none;">
- m3 {{obj.multi[2]}}
- </span>
- </mat-card-subtitle>
- </li>
-
-<li  style="display: inline-block;list-style:none;">
-<mat-card-subtitle>
- <span style="display: inline-block list-style:none;;">
- m4 {{obj.multi[3]}}
- </span>
- </mat-card-subtitle>
- </li>
-
-<button (click)="addCar($event, obj)" id={{obj.name}} class="btn btn-danger">Select</button>
-</mat-card> 
-</div>
  
 
 
 
 
 
+</mat-card>
+
+</div>
+
+
+
+
 </ng-template>
-</div>
-</div>
+
   
   `,
   styleUrls: ['./loading.component.sass']
@@ -146,14 +133,8 @@ export class LoadingComponent implements OnInit {
   
 
 
-  constructor(private http: HttpClient, private choice: TransferServiceService) { 
-    /*if(this.data){
-      console.log(`This is from the filter Service ${this.data}`)
-    }
-
-    else{
-      console.log(`No sir`);
-    }*/
+  constructor(private http: HttpClient, private choice: TransferServiceService, private router: Router) { 
+   
 
 
   }
@@ -252,20 +233,24 @@ export class LoadingComponent implements OnInit {
     
    
   }
-  addCar = (event,obj) =>{
-    let userName = localStorage.getItem('name');
-    let sendData = {};
-    if (userName !== ''){
-      sendData['name'] = userName;
-      sendData['selectedCar'] = obj
-      return this.http.post(`http://localhost:3005/usercars`, sendData)
+
+
+  showCar = (event,obj) =>{
+    console.log(`SHOW CAR FIRED`)
+    let carId = event.target.id
+    
+    
+     
+      return this.http.get(`http://localhost:3005/car/${carId}`)
     .subscribe((obj) =>{
       //console.log(obj)
+      console.log(obj)
+      this.router.navigate([`car/${carId}`])
 
     })
 
 
-    }
+    
     
     
 
@@ -274,16 +259,6 @@ export class LoadingComponent implements OnInit {
 
   
   ngOnInit() {
-    //let val = JSON.stringify(this.choice.setCarFax());
-    
-    
-  // console.log(`NG INIT ${ this.choice.setCarFax()}`)
-   //this.show = false
-    
-    //console.log(`THIS IS THE INIT ${Object.keys(this.carFaxObjects)}`)
-    //this.choice.getFilteredPrices()
-
-
     
     fetch('http://localhost:3005/')
     .then(res => res.json())

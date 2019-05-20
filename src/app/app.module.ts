@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule}   from '@angular/forms';
@@ -19,6 +20,8 @@ import { UserCarsComponent } from './user-cars/user-cars.component';
 import { Error500Component } from './error500/error500.component';
 import { Error400Component } from './error400/error400.component';
 import { CarEditComponent } from './car-edit/car-edit.component';
+import { ShowCarComponent } from './show-car/show-car.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { CarEditComponent } from './car-edit/car-edit.component';
     UserCarsComponent,
     Error500Component,
     Error400Component,
-    CarEditComponent
+    CarEditComponent,
+    ShowCarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ import { CarEditComponent } from './car-edit/car-edit.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
   
   ],
   providers: [LandingService],
