@@ -7,8 +7,8 @@ import {Router, NavigationExtras} from '@angular/router';
 @Component({
   selector: 'app-loading',
   template:  `
-  <div id="filter-main">
-  <div>
+  <div id="filter-main" class="row">
+  <div class="col-md-3 col-lg-3 col-sm-3" style="background:gray;height:500px;">
 <select id="car-filter" (change)= "handleChange($event)">
   <option value="" selected>Please choose a filter</option>
   <optgroup label="Price">
@@ -43,11 +43,11 @@ import {Router, NavigationExtras} from '@angular/router';
 </select>
 
 
-</div>
+
 
   
   
-  </div>
+  </div><!--End of the first col-->
 
 
   <div *ngIf="show; else showData">
@@ -60,8 +60,11 @@ import {Router, NavigationExtras} from '@angular/router';
 
 
 
-<div *ngFor="let obj of carFaxObjects">
+<div *ngFor="let obj of carFaxObjects" >
 <mat-card>
+
+<div class="col-md-8 col-sm-8 col-lg-8">
+
 
 
 
@@ -70,12 +73,12 @@ import {Router, NavigationExtras} from '@angular/router';
 
 <img mat-card-lg-image
    
-  src="{{obj.pic}}" 
+  src="{{obj?.pic}}" 
   alt="no data" 
  
   >
 
-  <li style="list-style: none; display: ;" >
+  <li style="list-style: none; display: inline-block ;" >
   <mat-card-title style="margin-left: 20px;"><span>{{obj.name}}</span></mat-card-title>
   </li>
  
@@ -101,7 +104,7 @@ import {Router, NavigationExtras} from '@angular/router';
 
 
  
- <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-danger">Show Details</button>
+ <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-info">Show Details</button>
 
  
 
@@ -109,8 +112,9 @@ import {Router, NavigationExtras} from '@angular/router';
 
 
 
-</mat-card>
 
+</div>
+</mat-card>
 </div>
 
 
