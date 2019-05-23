@@ -8,6 +8,7 @@ import { Promise } from 'q';
 export class LandingService {
   carFaxObjects;
   url = 'http://localhost:3005/';
+  carId= '';
  
 
 
@@ -23,6 +24,8 @@ export class LandingService {
     
 
   }
+
+ 
 
   
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import {HttpClient} from  '@angular/common/http';
 import {FilterComponent} from '../filter/filter.component';
 import {TransferServiceService} from '../transfer-service.service';
-import {Router} from '@angular/router';
+import {Router, NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-loading',
@@ -130,6 +130,7 @@ export class LoadingComponent implements OnInit {
   defaultCars;
   show: Boolean = true;
   data = this.choice.getData();
+  singleObj;
   
 
 
@@ -236,18 +237,17 @@ export class LoadingComponent implements OnInit {
 
 
   showCar = (event,obj) =>{
-    console.log(`SHOW CAR FIRED`)
-    let carId = event.target.id
+    let carId = event.target.id;
+    
+    
+
     
     
      
-      return this.http.get(`http://localhost:3005/car/${carId}`)
-    .subscribe((obj) =>{
-      //console.log(obj)
-      console.log(obj)
+     
       this.router.navigate([`car/${carId}`])
 
-    })
+   
 
 
     

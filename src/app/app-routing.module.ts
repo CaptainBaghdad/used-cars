@@ -20,7 +20,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'car/:id',
+    path: 'car/:url',
     component: ShowCarComponent,
     pathMatch: 'full'
   },
