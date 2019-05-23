@@ -1,3 +1,39 @@
-<p>
-{{singleCar?.price}}
-</p>
+<div class="container">
+<mat-card>
+    <img mat-card-lg-image
+   
+    src="{{singleCar?.pic}}" 
+    alt="no data" 
+   
+    >
+  
+    <li style="list-style: none; display: inline-block ;"  >
+    <mat-card-title style="margin-left: 20px;"><span>{{singleCar.name}}</span></mat-card-title>
+    </li>
+    <li style="list-style: none; display: inline-block ;" >
+        <mat-card-title style="margin-left: 20px;">{{singleCar?.price}}</mat-card-title>
+    </li>
+
+    <li style="list-style: none; display: inline-block ;" >
+        <mat-card-title style="margin-left: 20px;"><span>{{singleCar.multi[0]}}</span></mat-card-title>
+        </li>
+        <li style="list-style: none; display: inline-block ;" >
+            <mat-card-title style="margin-left: 20px;"><span>{{singleCar.multi[1]}}</span></mat-card-title>
+            </li>
+
+            <li style="list-style: none; display: inline-block ;"  >
+                <mat-card-title style="margin-left: 20px;"><span>{{singleCar.multi[2]}}</span></mat-card-title>
+                </li>
+                <li style="list-style: none; display: inline-block ;"  >
+                    <mat-card-title style="margin-left: 20px;"><span>{{singleCar.multi[3]}}</span></mat-card-title>
+                    </li>
+                    <li style="list-style: none; display: inline-block ;"  >
+                        <mat-card-title style="margin-left: 20px;"><span>{{singleCar.description}}</span></mat-card-title>
+                        </li>
+
+
+            
+    
+
+</mat-card>
+</div>
