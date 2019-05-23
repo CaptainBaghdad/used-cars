@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from  '@angular/common/http';
+import { UrlSerializer } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class TransferServiceService {
 
   private data;
   private carFaxObjects;
+  private carId;
   
   setCarFax = () =>{
     let ans;
@@ -17,10 +19,11 @@ export class TransferServiceService {
    fetch('http://localhost:3005/')
    .then(res => res.json())
    .then(d => {
-    console.log(`GEEEEZ ${d}`)
+    //console.log(`GEEEEZ ${d}`)
     ans = d
-    return ans
-     
+    this.carFaxObjects = ans
+    
+   
    })
    
      //let val  = JSON.stringify(res)
@@ -28,6 +31,8 @@ export class TransferServiceService {
     //return this.carFaxObjects
   
   //return this.carFaxObjects
+   return ans
+     
   }
 
   setData = (data) => {
@@ -168,6 +173,15 @@ export class TransferServiceService {
     })
   }
 
+  getSingleCar = (url) => {
+    console.log(`single car fired`)
+   
+    
+   return  this.http.get(`http://localhost:3005/car/${url}`)
+    
+    
+   
+  }
 
 
 
