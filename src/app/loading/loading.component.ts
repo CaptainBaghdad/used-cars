@@ -7,29 +7,56 @@ import {Router, NavigationExtras} from '@angular/router';
 @Component({
   selector: 'app-loading',
   template:  `
-  <div id="filter-main" class="row">
-  <div class="col-md-3 col-lg-3 col-sm-3" style="background:gray;height:500px;">
+  <div *ngIf="show; else showData">
+<h3>Loading ....</h3>
+
+</div>
+
+<ng-template #showData>
+
+ 
+<div *ngFor="let obj of carFaxObjects">
+
+<div class="card" style="width:800px; margin-left:25px;" >
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{{obj?.pic}}" alt="no pic" style="height: 150px; width: 200px;">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{obj.name}}<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">More information<i class="material-icons right">close</i></span>
+      <p>{{obj.price}}</p>
+      <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-info">Show Details</button>
+    </div>
+  </div>
+ 
+
+</div>
+
+
 <select id="car-filter" (change)= "handleChange($event)">
-  <option value="" selected>Please choose a filter</option>
-  <optgroup label="Price">
-    <option value="cheap" >Cheapest</option>
-    <option value="exspensive">Exspensive</option>
-    <option value="between-10-and-20">Between 10,000 and 20,000</option>
-    <option value="between-20-and-30">Between 20,000 and 30,000</option>
-    <option value="between-30-and-40">Between 30,000 and 40,000</option>
-    <option value="between-40-and-50">Between 40,000 and 50,000</option>
-    <option value="between-50-and-60">Between 50,000 and 60,000</option>
-    <option value="between-60-and-70">Between 60,000 and 70,000</option>
+<option value="" selected>Please choose a filter</option>
+<optgroup label="Price">
+  <option value="cheap" >Cheapest</option>
+  <option value="exspensive">Exspensive</option>
+  <option value="between-10-and-20">Between 10,000 and 20,000</option>
+  <option value="between-20-and-30">Between 20,000 and 30,000</option>
+  <option value="between-30-and-40">Between 30,000 and 40,000</option>
+  <option value="between-40-and-50">Between 40,000 and 50,000</option>
+  <option value="between-50-and-60">Between 50,000 and 60,000</option>
+  <option value="between-60-and-70">Between 60,000 and 70,000</option>
 </optgroup>
 
 
 <optgroup label="Color">
-  <option value="black">Black</option>
-  <option value="white">White</option>
-  <option value="red">Red</option>
-  <option value="blue">Blue</option>
-  <option value="gray">Gray</option>
-  <option value="other">Other</option>
+<option value="black">Black</option>
+<option value="white">White</option>
+<option value="red">Red</option>
+<option value="blue">Blue</option>
+<option value="gray">Gray</option>
+<option value="other">Other</option>
 </optgroup>
 <optgroup label="Mileage">
 <option value="lowest">Lowest</option>
@@ -41,86 +68,10 @@ import {Router, NavigationExtras} from '@angular/router';
 
 
 </select>
-
-
-
-
-  
-  
-  </div><!--End of the first col-->
-
-
-  <div *ngIf="show; else showData">
-<h3>Loading ....</h3>
-
-</div>
-
-<ng-template #showData>
-
-
-
-
-<div *ngFor="let obj of carFaxObjects" >
-<mat-card>
-
-<div class="col-md-8 col-sm-8 col-lg-8">
-
-
-
-
-
-
-
-<img mat-card-lg-image
-   
-  src="{{obj?.pic}}" 
-  alt="no data" 
- 
-  >
-
-  <li style="list-style: none; display: inline-block ;" >
-  <mat-card-title style="margin-left: 20px;"><span>{{obj.name}}</span></mat-card-title>
-  </li>
- 
- 
-  
-  
-  
- 
-  
-  <li style="list-style: none; display:;" > 
-  <mat-card-subtitle>
-  <span >
-  {{obj.price}}
-  </span>
-  </mat-card-subtitle>
-  </li>
-
-
-
-  
-  
-  
-
-
- 
- <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-info">Show Details</button>
-
- 
-
-
-
-
-
-
-</div>
-</mat-card>
-</div>
-
-
-
-
 </ng-template>
+
+
+
 
   
   `,
@@ -263,6 +214,10 @@ export class LoadingComponent implements OnInit {
 
   
   ngOnInit() {
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = (elems);
+    });
     
     fetch('http://localhost:3005/')
     .then(res => res.json())
