@@ -7,30 +7,40 @@ import {Router, NavigationExtras} from '@angular/router';
 @Component({
   selector: 'app-loading',
   template:  `
-  <div id="filter-main" class="row">
-  <div class="col-md-3 col-lg-3 col-sm-3" style="background:gray;height:500px;">
-<select id="car-filter" (change)= "handleChange($event)">
-  <option value="" selected>Please choose a filter</option>
-  <optgroup label="Price">
-    <option value="cheap" >Cheapest</option>
-    <option value="exspensive">Exspensive</option>
-    <option value="between-10-and-20">Between 10,000 and 20,000</option>
-    <option value="between-20-and-30">Between 20,000 and 30,000</option>
-    <option value="between-30-and-40">Between 30,000 and 40,000</option>
-    <option value="between-40-and-50">Between 40,000 and 50,000</option>
-    <option value="between-50-and-60">Between 50,000 and 60,000</option>
-    <option value="between-60-and-70">Between 60,000 and 70,000</option>
+  
+  <div *ngIf="show; else showData">
+<h3>Loading ....</h3>
+
+</div>
+
+<ng-template #showData>
+<body style="background: red;">
+
+
+
+<select id="car-filter" style="width:300px;  float:left; margin-top:25px;" (change)= "handleChange($event)" class="browser-default">
+<option value="" selected>Choose a filter</option>
+<optgroup label="Price">
+  <option value="cheap" >Cheapest</option>
+  <option value="exspensive">Exspensive</option>
+  <option value="between-10-and-20">Between 10,000 and 20,000</option>
+  <option value="between-20-and-30">Between 20,000 and 30,000</option>
+  <option value="between-30-and-40">Between 30,000 and 40,000</option>
+  <option value="between-40-and-50">Between 40,000 and 50,000</option>
+  <option value="between-50-and-60">Between 50,000 and 60,000</option>
+  <option value="between-60-and-70">Between 60,000 and 70,000</option>
 </optgroup>
 
 
 <optgroup label="Color">
-  <option value="black">Black</option>
-  <option value="white">White</option>
-  <option value="red">Red</option>
-  <option value="blue">Blue</option>
-  <option value="gray">Gray</option>
-  <option value="other">Other</option>
+<option value="black">Black</option>
+<option value="white">White</option>
+<option value="red">Red</option>
+<option value="blue">Blue</option>
+<option value="gray">Gray</option>
+<option value="other">Other</option>
 </optgroup>
+
 <optgroup label="Mileage">
 <option value="lowest">Lowest</option>
 <option value="less-than-20">Less than 20,000</option>
@@ -43,88 +53,51 @@ import {Router, NavigationExtras} from '@angular/router';
 </select>
 
 
-
-
-  
-  
-  </div><!--End of the first col-->
-
-
-  <div *ngIf="show; else showData">
-<h3>Loading ....</h3>
-
-</div>
-
-<ng-template #showData>
-
-
-
-
-<div *ngFor="let obj of carFaxObjects" >
-<mat-card>
-
-<div class="col-md-8 col-sm-8 col-lg-8">
-
-
-
-
-
-
-
-<img mat-card-lg-image
-   
-  src="{{obj?.pic}}" 
-  alt="no data" 
  
-  >
+<div *ngFor="let obj of carFaxObjects">
 
-  <li style="list-style: none; display: inline-block ;" >
-  <mat-card-title style="margin-left: 20px;"><span>{{obj.name}}</span></mat-card-title>
-  </li>
- 
- 
-  
-  
-  
- 
-  
-  <li style="list-style: none; display:;" > 
-  <mat-card-subtitle>
-  <span >
-  {{obj.price}}
-  </span>
-  </mat-card-subtitle>
-  </li>
+<div id ="cizard" class="card" style="width:800px; float: right; margin-left:25px; margin-top:25px;" >
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{{obj?.pic}}" alt="no pic" style="height: 150px; width: 200px;">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{obj.name}}<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">More information<i class="material-icons right">close</i></span>
+      <span style="margin-right:15px;"><i class="small material-icons">attach_money</i>{{obj.price}}</span>
+    
+      
+      <span style="margin-right:15px;"><i class="small material-icons">insert_chart</i>{{obj.multi[0]}}</span>
+      
+      <span style="margin-right:15px;"><i class="small material-icons">directions_car</i>{{obj.multi[1]}}</span>
+      
+      <span style="margin-right:15px;"><i class="small material-icons">palette</i>{{obj.multi[2]}}</span>
+      
+      <span style="margin-right:15px;"><i class="small material-icons">build</i>{{obj.multi[3]}}</span>
+      
+      
 
-
-
-  
-  
-  
-
-
- 
- <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-info">Show Details</button>
-
+     <!-- <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-info">Show Details</button>-->
+    </div>
+  </div>
  
 
-
-
-
-
-
-</div>
-</mat-card>
 </div>
 
 
 
-
+</body>
 </ng-template>
+
+
+
+
 
   
   `,
-  styleUrls: ['./loading.component.sass']
+  styles: ['.card:hover {background:#dbe8ff;}']
 })
 
 
@@ -149,6 +122,7 @@ export class LoadingComponent implements OnInit {
     let ans  = event.target.value;
     console.log(`this is the ans from the filter ${ans}`)
     this.choice.setData(ans)
+   
 
     switch (ans) {
       case 'cheap':
@@ -242,27 +216,14 @@ export class LoadingComponent implements OnInit {
 
   showCar = (event,obj) =>{
     let carId = event.target.id;
-    
-    
+    this.router.navigate([`car/${carId}`])
 
-    
-    
-     
-     
-      this.router.navigate([`car/${carId}`])
-
-   
-
-
-    
-    
-    
-
-  }
+   }
 
 
   
   ngOnInit() {
+    
     
     fetch('http://localhost:3005/')
     .then(res => res.json())
