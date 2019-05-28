@@ -1,3 +1,32 @@
-<p>
-  header works!
-</p>
+
+<div *ngIf="isLogged; else noLogged">
+    <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a (click)="logUmOut($event)">Logout</a></li>
+              <li><a routerLink="/dashboard">Dashboard</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <ng-template>
+
+          <div class="navbar-fixed" #noLogged>
+              <nav>
+                <div class="nav-wrapper">
+                  <a href="#!" class="brand-logo">Logo</a>
+                  <ul class="right hide-on-med-and-down">
+                    <li ><a routerLink="/login">Login</a></li>
+                    <li><a routerLink="/register">Register</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+
+      </ng-template>
+
+
+</div>

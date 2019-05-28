@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import {HttpClient} from  '@angular/common/http';
 import {FilterComponent} from '../filter/filter.component';
+import {HeaderComponent} from '../header/header.component';
 import {TransferServiceService} from '../transfer-service.service';
 import {Router, NavigationExtras} from '@angular/router';
 
@@ -13,12 +14,17 @@ import {Router, NavigationExtras} from '@angular/router';
 
 </div>
 
+<div id="header-div">
+<app-header></app-header>
+</div>
+
+<div id="main-div">
 <ng-template #showData>
-<body style="background: red;">
 
 
 
-<select id="car-filter" style="width:300px;  float:left; margin-top:25px;" (change)= "handleChange($event)" class="browser-default">
+
+<select id="car-filter" style="width:300px;  float:left; margin-top:75px;" (change)= "handleChange($event)" class="browser-default">
 <option value="" selected>Choose a filter</option>
 <optgroup label="Price">
   <option value="cheap" >Cheapest</option>
@@ -56,28 +62,29 @@ import {Router, NavigationExtras} from '@angular/router';
  
 <div *ngFor="let obj of carFaxObjects">
 
-<div id ="cizard" class="card" style="width:800px; float: right; margin-left:25px; margin-top:25px;" >
+<div id ="cizard" class="card" style="width:800px; float: right; margin-left:25px; margin-top:75px;" >
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="{{obj?.pic}}" alt="no pic" style="height: 150px; width: 200px;">
     </div>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">{{obj.name}}<i class="material-icons right">more_vert</i></span>
-      <p><a href="#">This is a link</a></p>
+      <span class="card-title activator grey-text text-darken-4">{{obj.name}}<i class="material-icons right">add_box</i></span>
+      
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">More information<i class="material-icons right">close</i></span>
-      <span style="margin-right:15px;"><i class="small material-icons">attach_money</i>{{obj.price}}</span>
+      <span class="card-title grey-text text-darken-4">Full Specs<i class="material-icons right">close</i></span>
+      <span style="margin-right:12px;"><i class="small material-icons">attach_money</i>{{obj.price}}</span>
     
       
-      <span style="margin-right:15px;"><i class="small material-icons">insert_chart</i>{{obj.multi[0]}}</span>
+      <span style="margin-right:12px;"><i class="small material-icons" style="margin-right: 12px;">insert_chart</i>{{obj.multi[0]}}</span>
       
-      <span style="margin-right:15px;"><i class="small material-icons">directions_car</i>{{obj.multi[1]}}</span>
+      <span style="margin-right:12px;"><i class="small material-icons" style="margin-right: 12px;">directions_car</i>{{obj.multi[1]}}</span>
       
-      <span style="margin-right:15px;"><i class="small material-icons">palette</i>{{obj.multi[2]}}</span>
+      <span style="margin-right:12px;"><i class="small material-icons" style="margin-right: 12px;">palette</i>{{obj.multi[2]}}</span>
       
-      <span style="margin-right:15px;"><i class="small material-icons">build</i>{{obj.multi[3]}}</span>
+      <span style="margin-right:10px;"><i class="small material-icons" style="margin-right: 10px;">build</i>{{obj.multi[3]}}</span>
       
-      
+      <br/>
+      <p class="desc">{{obj.description}}</p>
 
      <!-- <button (click)="showCar($event, obj)" id={{obj._id}} class="btn btn-info">Show Details</button>-->
     </div>
@@ -88,8 +95,9 @@ import {Router, NavigationExtras} from '@angular/router';
 
 
 
-</body>
+
 </ng-template>
+</div>
 
 
 
@@ -97,7 +105,7 @@ import {Router, NavigationExtras} from '@angular/router';
 
   
   `,
-  styles: ['.card:hover {background:#dbe8ff;}']
+  styles: ['.card:hover {background:#dbe8ff;} img {padding: 12px;} .card {margin-right: 30px;} #main-div {background: blue;} .desc {margin-top: 50px;}']
 })
 
 
@@ -112,7 +120,7 @@ export class LoadingComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private choice: TransferServiceService, private router: Router) { 
-   
+    document.body.style.background = '#cbd9ef';
 
 
   }

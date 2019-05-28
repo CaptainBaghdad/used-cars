@@ -1,13 +1,38 @@
-<div id="reg-main-div">
-<div id="reg-form-div">
-<form [formGroup]="form" (ngSubmit)="handleSubmit(e)">
-  Name : <input type='text' id='name' name='name' formControlName="name"><br/>
-  Email: <input type='text' id='email' name='email' formControlName="email"><br/>
-  Password: <input type='text' id='password' name='password' formControlName="password"><br/>
-<br/>
-<input type="submit">
 
-</form>
+
+<div id="reg-div">
+    <h3>Register</h3>
+<div class="row">
+    
+  <form [formGroup]="form" (ngSubmit)="handleSubmit(e)" class="col s6 ">
+      
+    <div class="row">
+      <div class="input-field col s6">
+        <input formControlName="name" id="name" type="text" class="validate ini">
+        <label for="name">Name</label>
+      </div>
+      
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="email" class="validate ini" formControlName="email">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="input-field  col s6">
+        <input id="password" type="password" class="validate ini" formControlName="password">
+        <label for="password">Password</label>
+      </div>
+    </div>
+    
+    <br/>
+    <input type="submit" id="sub-btn" class="waves-effect waves-light btn-small">
+  
+  </form>
+
 </div>
 </div>
 
