@@ -6,6 +6,7 @@ import { DashboardComponent} from './dashboard/dashboard.component';
 import {LoadingComponent} from './loading/loading.component';
 import {CarEditComponent} from './car-edit/car-edit.component';
 import {ShowCarComponent} from './show-car/show-car.component';
+import {HeaderComponent} from './header/header.component';
 const routes: Routes = [
   {
     path: '',

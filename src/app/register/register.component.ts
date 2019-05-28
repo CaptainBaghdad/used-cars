@@ -6,14 +6,14 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.sass']
+  styles: ['  h3 {margin-top:15px; margin-left: 150px;} .ini {width:400px;} #sub-btn {margin-left:185px;} #reg-div {margin-left: 450px; margin-top: 10%; background: #596b89; width:500px; height:400px;}']
 })
 export class RegisterComponent implements OnInit {
   
   form: FormGroup;
 
   constructor(private http: HttpClient, private fb: FormBuilder,private router: Router) { 
-    
+    document.body.style.background = '#cbd9ef';
     this.form = this.fb.group({
       name: [""],
       email: [""],
