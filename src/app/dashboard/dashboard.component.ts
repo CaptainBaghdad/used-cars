@@ -5,11 +5,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import {DashBoardServiceService} from '../dash-board-service.service';
 import {MatCardModule} from '@angular/material/card';
 import {CarsComponent} from '../cars/cars.component';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.sass']
+  styles: ['.dash-right-section { background: #cbd9ef; }']
 })
 
 
@@ -49,13 +50,16 @@ export class DashboardComponent implements OnInit {
 
    }
 
-   editSubmit = () =>{
+   showEditForm = () =>{
+    document.getElementById('dash-main-div').style.display = 'inline-block';
+    document.getElementById('add-car').style.display = "none";
 
    }
 
   ngOnInit() {
     this.show = false
     this.userName = localStorage.getItem('name')
+    document.getElementById('dash-main-div').style.display = 'none';
     console.log(`This is the init value of the ng Inti ${this.userName}`)
     this.editHolder = document.getElementById('carEdit')
     this.editHolder.style.display = 'none';

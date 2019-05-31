@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
-  styleUrls: ['./cars.component.sass']
+  styles: ['.cars-img {height: 150px; width: 300px;']
 })
 export class CarsComponent implements OnInit {
 
@@ -20,6 +20,8 @@ getAllCars = () =>{
   return this.http.get(`http://localhost:3005/allcars`, { headers: new HttpHeaders({'name': name})
 })
   .subscribe(data =>{
+    let showcars = document.getElementById('show-cars');
+      showcars.style.display = "none";
     console.log(`BIG DATA ${data}`)
     this.allUsers = data
   })
@@ -73,6 +75,7 @@ handleEdit = (event) =>{
     return this.http.get(`http://localhost:3005/allcars`, { headers: new HttpHeaders({'name': name})
   })
     .subscribe(data =>{
+      
       console.log(`BIG DATA ${data}`)
       this.allUsers = data
     })

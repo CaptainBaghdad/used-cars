@@ -1,24 +1,48 @@
 <div *ngFor="let obj of allUsers">
-    <mat-card>
-        <img mat-card-md-image src="{{obj.pic}}">
-       <br />
-        <mat-card-title><span>Make : {{obj.name}}</span></mat-card-title>
-        <br />
-        <mat-card-subtitle><span>Price : {{obj.price}}</span></mat-card-subtitle>
-        <br />
-        <mat-card-content> <span>{{obj.description}}</span></mat-card-content>
-        <br />
-        <mat-card-actions>
+    
+        <div class="row">
+                <div class="col s4 m4" style="background: #cbd9ef; margin-left: 25px;">
+                  <div class="card img-holder">
+                    <div class="card-image" style="width: 400px;">
+                      <img src="{{obj.pic}}" style="height: 150px; width:300px;"alt="there is no data" class="cars-img">
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                      
+                      <span class="card-title" style="color:black">{{obj.name}}</span>
+                    </div>
+                    <br/>
+                    <span class="card-title">{{obj.price}}</span>
+                    <br/>
+                    <span >{{obj.multi[0]}}</span>
+                    <br/>
+                    <span >{{obj.multi[1]}}</span>
+                    <br/>
+                    <span >{{obj.multi[2]}}</span>
+                    <br/>
+                    <span >{{obj.multi[3]}}</span>
+                    <div class="card-content">
+                      <p>{{obj.description}}</p>
+                    </div>
+                    <div class="card-action">
+                            <button (click)="handleEdit($event)" name={{obj._id}} id={{obj._id}}>Edit</button>
+                      <a href="#">This is a link</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                        
+
+
+
+    <!--this is the end of the ngfor div-->
+        
             
             <!--<button mat-raised-button color="primary" (click)="handleDelete($event)" name={{obj._id}} id={{obj._id}}>Delete</button>-->
-            <button mat-raised-button color="primary" (click)="handleEdit($event)" name={{obj._id}} id={{obj._id}}>Edit</button>
+           
             
-          </mat-card-actions>
-        
-      
-      </mat-card>
-
 </div>
 
-<button (click)="getAllCars()">Press</button>
+<button (click)="getAllCars()" id="show-cars">Your Cars</button>
 

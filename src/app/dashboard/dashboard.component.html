@@ -1,29 +1,40 @@
-<div id="dash-main-div">
-  <div id="dash-form-div">
-  <form [formGroup]="form" (ngSubmit)="handleSubmit()">
-    <input type="hidden" name="hval"  id="hval" formControlName="hval">
-     Upload Pic: <input (change)="handleFile($event)" type='file' id='file' name='file' formControlName="file"><br/>
-     Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>
-     Asking Price: <input type='text' id='price' name='price' formControlName="price"><br/>
-     Milege on the Car: <input type='text' id='mileage' name='mileage' formControlName="mileage"><br/>
-     Body Type of the Car: <input type='text' id='bodytype' name='bodytype' formControlName="bodytype"><br/>
-     Color of the Car: <input type='text' id='color' name='color' formControlName="color"><br/>
-     Engine on the Car: <input type='text' id='engine' name='engine' formControlName="engine"><br/>
-     Description: <input type='text' id='description' name='description' formControlName="description"><br/>
-     <!--Model of the Car: <input type='text' id='model' name='model' formControlName="model"><br/>-->
-     
-    
-    
-    
-    
-    <br/>
+<div class="row">
+  <div class="col-md-5 col-lg-5 col-sm-5 dash-right-section">
+    <h4>Add Car</h4>
+  <a (click)="showEditForm()" id="add-car" style="float: right" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 
+  <div id="dash-main-div">
+      <div id="dash-form-div">
+      <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+        <input type="hidden" name="hval"  id="hval" formControlName="hval">
+         Upload Pic: <input (change)="handleFile($event)" type='file' id='file' name='file' formControlName="file"><br/>
+         Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>
+         Asking Price: <input type='text' id='price' name='price' formControlName="price"><br/>
+         Milege on the Car: <input type='text' id='mileage' name='mileage' formControlName="mileage"><br/>
+         Body Type of the Car: <input type='text' id='bodytype' name='bodytype' formControlName="bodytype"><br/>
+         Color of the Car: <input type='text' id='color' name='color' formControlName="color"><br/>
+         Engine on the Car: <input type='text' id='engine' name='engine' formControlName="engine"><br/>
+         Description: <input type='text' id='description' name='description' formControlName="description"><br/>
+         <!--Model of the Car: <input type='text' id='model' name='model' formControlName="model"><br/>-->
+         
+        
+        
+        
+        
+        <br/>
+    
+    
+      <input type="submit">
+      
+      </form>
+      </div><!--dash-form-div-->
+      </div><!--dash-main-div-->
+</div><!--end col-->
+<div class="col-lg-5" >
+    <app-cars></app-cars>
+</div>
 
-  <input type="submit">
-  
-  </form>
-  </div>
-  </div>
+</div><!--end row-->
 
   <div id="img-holder" style="height:300px; width:300px;">
       
@@ -36,8 +47,10 @@
   
   </div>
 
-  
-    <app-cars></app-cars>
+ 
+        
+   
+   
   
 
   <div id="fe">
