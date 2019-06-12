@@ -8,13 +8,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
 
-## Development server
+## Project Description
+Used Cars is a MEAN stack application that was developed to demonstrate webscapping with dynamic content that is now more common than static content with the rise in the popularity of the front end frameworks.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Technologies
+
+1. MongoDB - Non Relational DB used for the storage of the applications data
+2. Express - Used as the  framework for Node js server
+3. Angular 7 - Front-end framework of javascript
+4. Node js - Backend server
+5. Nightmare-js - A high level browser automation library used to scrape sites for HTML content.
+6. Cheerio-js - A library that allows a JQUERY like syntax on the server
+7. Material Design - Css library used to style and display the angular components
+
+## Front-end Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
 
 ## Build
 
