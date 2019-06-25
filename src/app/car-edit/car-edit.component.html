@@ -1,24 +1,31 @@
-<div id="form-edit-div">
-<form [formGroup]="form" (change)="handleEdit($event)" (ngSubmit)="editSubmit($event)" >
-    <!--<input type="hidden" name="edithval"  id="edithval" formControlName="edithval">-->
-    <!-- Upload Pic: <input (change)="handleFile($event)" type='file' id='file' name='file' formControlName="file"><br/>-->
-     <!--Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>-->
-     Asking Price: <input type='text'  id='editprice' name='editprice' formControlName="editprice"><br/>
-     Milege on the Car: <input type='text'  id='editmileage' name='editmileage' formControlName="editmileage"><br/>
-     <!--Body Type of the Car: <input type='text' id='bodytype' name='bodytype' formControlName="bodytype"><br/>-->
-     <!--Color of the Car: <input type='text' id='color' name='color' formControlName="color"><br/>-->
-     <!--Engine on the Car: <input type='text' id='engine' name='engine' formControlName="engine"><br/>-->
-     Description: <input type='text'   id='editdescription' name='editdescription' formControlName="editdescription"><br/>
-     <!--Model of the Car: <input type='text' id='model' name='model' formControlName="model"><br/>-->
-     
-    
-    
-    
-    
+<div class="row">
+<form class="col s6" [formGroup]="form" (change)="handleEdit($event)" (ngSubmit)="editSubmit($event)" >
+   
+        <div class="input-field col s6" >
+            <input style="width:300px;" type='text'  class="validate" id='editprice' name='editprice' formControlName="editprice"><br/>
+          <label for="editprice">Edit Price</label>
+        </div>
+        <div class="input-field col s6" >
+            <input type='text' style="width:300px;"  class="validate" id='editmileage' name='editmileage' formControlName="editmileage"><br/>
+            <label for="editmileage">Edit Mileage</label>
+        </div>
+
+        <div class="input-field col s6" >
+            <input type='text' style="width:300px;" class="validate" id='editdescription' name='editdescription' formControlName="editdescription"><br/>
+            <label for="editdescription">Edit Description</label>
+
+        </div>
+      
+  
     <br/>
 
 
-  <input type="submit">
+    <input type="submit">
+    
+    </form>
+    </div>
   
-  </form>
-  </div>
+  
+
+
+  

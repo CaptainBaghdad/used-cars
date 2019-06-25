@@ -14,12 +14,11 @@ import {Router, NavigationExtras} from '@angular/router';
 
 </div>
 
-<div id="header-div">
-<app-header></app-header>
-</div>
+
 
 <div id="main-div">
 <ng-template #showData>
+<app-header></app-header>
 
 
 
@@ -116,19 +115,21 @@ export class LoadingComponent implements OnInit {
   show: Boolean = true;
   data = this.choice.getData();
   singleObj;
+  isLogged = false;
   
 
 
   constructor(private http: HttpClient, private choice: TransferServiceService, private router: Router) { 
     document.body.style.background = '#cbd9ef';
+    localStorage.getItem('name') !== "" ? this.isLogged = true : this.isLogged = false;
 
 
   }
 
   
-  handleChange = (event) =>{
+  handleChange = (event) => {
     let ans  = event.target.value;
-    console.log(`this is the ans from the filter ${ans}`)
+    
     this.choice.setData(ans)
    
 
@@ -173,7 +174,7 @@ export class LoadingComponent implements OnInit {
 
         case 'between-60-and-70':
         let sixlen = this.choice.getBetweenSixty(this.defaultCars).length
-        console.log(`606060606 ${sixlen}`)
+        
         if(sixlen >= 1){
           this.carFaxObjects = this.choice.getBetweenSixty(this.defaultCars)
         }
@@ -232,6 +233,7 @@ export class LoadingComponent implements OnInit {
   
   ngOnInit() {
     
+ 
     
     fetch('http://localhost:3005/')
     .then(res => res.json())
@@ -239,9 +241,10 @@ export class LoadingComponent implements OnInit {
       this.carFaxObjects = data 
       this.show = false;
       this.defaultCars = data
+      localStorage.getItem('token') !== "" ? this.isLogged = true : this.isLogged = false;
       
       
-      console.log(`THis is the carFax ${Object.keys(this.carFaxObjects)}`);
+      
     })
 
 

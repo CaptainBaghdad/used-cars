@@ -7,6 +7,7 @@ import {LoadingComponent} from './loading/loading.component';
 import {CarEditComponent} from './car-edit/car-edit.component';
 import {ShowCarComponent} from './show-car/show-car.component';
 import {HeaderComponent} from './header/header.component';
+import {Error500Component} from './error500/error500.component';
 const routes: Routes = [
   {
     path: '',
@@ -39,6 +40,12 @@ const routes: Routes = [
 
 {path: 'dashboard',
   component: DashboardComponent,
+  pathMatch: 'full'
+
+},
+
+{path: 'error5',
+  component: Error500Component,
   pathMatch: 'full'
 
 }

@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   handleSubmit = (e) =>{
     let val: any = this.form.value;
-    console.log(`VAL!!! ${val.name}`)
+    
 
     
      return  this.http.post('http://localhost:3005/register',{
@@ -42,12 +42,9 @@ export class RegisterComponent implements OnInit {
      .subscribe(data => {
        this.router.navigate(['login'])
       
-       console.log(`Observe response : ${Object.values(data)}`);
+       
      })
-   // this.name = e.target.value;
-    //this.email = e.target.email.value;
-    //this.password = e.target.password.value;
-    console.log(`Bom Dia`);
+  
   }
 
 }

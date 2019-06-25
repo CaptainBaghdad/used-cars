@@ -1,11 +1,47 @@
+<div *ngIf="isLogged; else loggedOutHeader">
+    <div class="navbar-fixed">
+        <nav style="background:darkslateblue">
+          <div class="nav-wrapper">
+            <a routerLink="/" class="brand-logo">Used-Cars</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a (click)="logUmOut($event)">Logout</a></li>
+              <li><a routerLink="/dashboard">Dashboard</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+  
+</div>
+
+<ng-template #loggedOutHeader>
+  
+  <div class="navbar-fixed" >
+    <nav style="background:darkslateblue">
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo">Used-Cars</a>
+        <ul class="right hide-on-med-and-down">
+          <li ><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/register">Register</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</ng-template>
+
+
+
+
 <div class="row">
+ 
   <div class="col-md-5 col-lg-5 col-sm-5 dash-right-section">
-    <h4>Add Car</h4>
-  <a (click)="showEditForm()" id="add-car" style="float: right" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+    
+  <a role="button" (click)="showEditForm()" id="add-car" style="float: right" class="btn btn-info" >Add Car</a>
 
   <div id="dash-main-div">
       <div id="dash-form-div">
-      <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <form [formGroup]="form" (ngSubmit)="handleSubmit()" enctype="multipart/form-data">
         <input type="hidden" name="hval"  id="hval" formControlName="hval">
          Upload Pic: <input (change)="handleFile($event)" type='file' id='file' name='file' formControlName="file"><br/>
          Make of the Car: <input type='text' id='make' name='make' formControlName="make"><br/>
@@ -15,7 +51,7 @@
          Color of the Car: <input type='text' id='color' name='color' formControlName="color"><br/>
          Engine on the Car: <input type='text' id='engine' name='engine' formControlName="engine"><br/>
          Description: <input type='text' id='description' name='description' formControlName="description"><br/>
-         <!--Model of the Car: <input type='text' id='model' name='model' formControlName="model"><br/>-->
+         
          
         
         
@@ -24,14 +60,14 @@
         <br/>
     
     
-      <input type="submit">
+      <input role="button" class="waves-effect waves-light btn-small btn btn-success" type="submit">
       
       </form>
       </div><!--dash-form-div-->
       </div><!--dash-main-div-->
 </div><!--end col-->
 <div class="col-lg-5" >
-    <app-cars></app-cars>
+    <app-cars id="show-show"></app-cars>
 </div>
 
 </div><!--end row-->
@@ -42,7 +78,7 @@
   </div>
 
   <div id="carEdit" style="height: 300px; width:300px;">
-      <button (click)="handleEdit()" id="edit-btn">Edit</button> 
+     <!-- <button (click)="handleEdit()" id="edit-btn">Edit</button> -->
       
   
   </div>

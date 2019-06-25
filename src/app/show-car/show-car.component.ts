@@ -29,16 +29,7 @@ export class ShowCarComponent implements OnInit {
        this.singleCar = data
      })
      
-    //console.log(`from init ${url}`)
-
-    console.log(`TRUE ${this.singleCar['price']}`)
-    /*let url = this.router.url.replace(/\/car\//g, '')
-    console.log(`ONINIT BIOOOTCH ${url}`)
-   this.singleCar =  this.trans.getSingleCar(url)
-   */
- //this.carFaxObjects = this.trans.setCarFax()
-
-  // return this.http.get(`http://localhost3005:/car/${}`)
+    
   }
 
 
