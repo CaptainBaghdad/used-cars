@@ -10,6 +10,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  isLogged: boolean = false;
+
 
   
 
@@ -25,30 +27,29 @@ export class LoginComponent implements OnInit {
 
    email: string = ""
   password: string  = ""
-  loggedin: boolean = false;
-
+  
   
 
   handleSubmit = () => {
     let val = this.form.value;
-     //this.email =  val.email;
-     //this.password = val.password;
+     
     return  this.http.post('http://localhost:3005/login', {
       email: val.email,
       password: val.password
      })
      .subscribe(data => {
-       this.loggedin = true;
+       if(!data){
+        this.isLogged = false;
+       }
+       this.isLogged = true;
        let token: string = data['token'];
        localStorage.setItem('token', token);
        localStorage.setItem('name', data['data']['name'])
-       console.log(`This is the localStorage Name : ${localStorage.getItem('name')}`)
+       
        this.router.navigate(['dashboard'])
-       //console.log(`We have success ${data['token']}`)
+      
         
      })
-
-    //console.log(`LOGIN !!!!!`)
   }
 
   ngOnInit() {

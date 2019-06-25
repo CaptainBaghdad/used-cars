@@ -14,13 +14,15 @@ export class HeaderComponent implements OnInit {
   constructor(private transfer: TransferServiceService, private router: Router) { }
 
   logUmOut = (event) =>{
-    //event.target.preventDefault()
+   
     localStorage.clear();
-    this.router.navigate(['login'])
+    this.isLogged = false;
+    this.router.navigate(['/'])
   }
 
   ngOnInit() {
-    localStorage.getItem('name') ? this.isLogged = true : this.isLogged = false;  
+    
+    localStorage.getItem('name') !== "" ? this.isLogged = true : this.isLogged = false;  
   }
 
 }

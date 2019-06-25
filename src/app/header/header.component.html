@@ -1,9 +1,9 @@
 
 <div *ngIf="isLogged; else noLogged">
     <div class="navbar-fixed">
-        <nav>
+        <nav style="background:darkslateblue">
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
+            <a routerLink="/" class="brand-logo">Used-Cars</a>
             <ul class="right hide-on-med-and-down">
               <li><a (click)="logUmOut($event)">Logout</a></li>
               <li><a routerLink="/dashboard">Dashboard</a></li>
@@ -12,12 +12,14 @@
         </nav>
       </div>
 
-      <ng-template>
+    </div>
 
-          <div class="navbar-fixed" #noLogged>
-              <nav>
+      <ng-template #noLogged>
+
+          <div class="navbar-fixed" >
+              <nav style="background:darkslateblue">
                 <div class="nav-wrapper">
-                  <a href="#!" class="brand-logo">Logo</a>
+                  <a href="" class="brand-logo">Used-Cars</a>
                   <ul class="right hide-on-med-and-down">
                     <li ><a routerLink="/login">Login</a></li>
                     <li><a routerLink="/register">Register</a></li>
@@ -29,4 +31,4 @@
       </ng-template>
 
 
-</div>
+

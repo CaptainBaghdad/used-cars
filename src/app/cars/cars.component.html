@@ -4,7 +4,7 @@
                 <div class="col s4 m4" style="background: #cbd9ef; margin-left: 25px;">
                   <div class="card img-holder">
                     <div class="card-image" style="width: 400px;">
-                      <img src="{{obj.pic}}" style="height: 150px; width:300px;"alt="there is no data" class="cars-img">
+                      <img src="http://localhost:3005/uploads/{{obj.pic}}" style="height: 150px; width:300px;"alt="there is no data" class="cars-img">
                       <br/>
                       <br/>
                       <br/>
@@ -13,21 +13,21 @@
                       <span class="card-title" style="color:black">{{obj.name}}</span>
                     </div>
                     <br/>
-                    <span class="card-title">{{obj.price}}</span>
+                    <span class="card-title" style="margin-left:15px;">{{obj.price}}</span>
                     <br/>
-                    <span >{{obj.multi[0]}}</span>
+                    <span style="margin-left:15px;">{{obj.multi[0]}}</span>
                     <br/>
-                    <span >{{obj.multi[1]}}</span>
+                    <span style="margin-left:15px;">{{obj.multi[1]}}</span>
                     <br/>
-                    <span >{{obj.multi[2]}}</span>
+                    <span style="margin-left:15px;">{{obj.multi[2]}}</span>
                     <br/>
-                    <span >{{obj.multi[3]}}</span>
+                    <span style="margin-left:15px;">{{obj.multi[3]}}</span>
                     <div class="card-content">
                       <p>{{obj.description}}</p>
                     </div>
                     <div class="card-action">
-                            <button (click)="handleEdit($event)" name={{obj._id}} id={{obj._id}}>Edit</button>
-                      <a href="#">This is a link</a>
+                            <button (click)="handleEdit($event)" name={{obj._id}} id={{obj._id}} class="btn btn-info" style="float:right;">Edit</button>
+                            <button (click)="handleDelete($event)" name={{obj._id}} id={{obj._id}} class="btn btn-info" style="float:left;">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -39,10 +39,10 @@
     <!--this is the end of the ngfor div-->
         
             
-            <!--<button mat-raised-button color="primary" (click)="handleDelete($event)" name={{obj._id}} id={{obj._id}}>Delete</button>-->
+            <!---->
            
             
 </div>
 
-<button (click)="getAllCars()" id="show-cars">Your Cars</button>
+<button class="btn btn-info" (click)="getAllCars()" id="show-cars">Your Cars</button>
 
